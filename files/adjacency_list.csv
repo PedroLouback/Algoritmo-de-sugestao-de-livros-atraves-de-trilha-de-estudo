@@ -1,5 +1,32 @@
-Front-end  Internet  HTML  CSS  Javascript  Frameworks
-Back-end  OS  Rust  Go  Dados  Grafos
-Mobile  Kotlin  Controle de Sistemas  Segurança  Teste  Dados
-Dados  Estrutura de dados  Segurança da Informação  Big Data  Machine Learning  Banco de Dados
-Python  Funções  Ordenação  POO  GitHub  Back-end
+JavaScript;HTML/CSS;React;React Native;Logica de Programação;Nano;
+Rust;S.embarcados;Nano;Logica de Programação;Banco de dados;
+Python;S.embarcados;Analise de dados;Raspberry;POO;I.A;Logica de Programação;Mineração de dados;
+C;S.embarcados;Logica de Programação;Estrutura de dados;S.O;
+C++;POO;Logica de Programação;S.embarcados;Estrutura de dados;S.O;
+Java;POO;Mobile;Estrutura de dados;Android;Logica de Programação;S.O;
+React;JavaScript;React Native;Mobile;IOS;Android;HTML/CSS;
+React Native;Mobile;U/X;IOS;Android;
+Node;JavaScript;Nano;
+Arduino;C;S.embarcados;Raspberry;IOT;
+S.embarcados;C;Raspberry;IOT;Arduino;Python;
+I.A;Python;
+Analise de dados;Python;Rust;Banco de dados;Mineração de dados;
+Raspberry;Python;S.embarcados;IOT;
+Mineração de dados;Analise de dados;Rust;Banco de dados;Python;
+Scrum;JavaScript;Java;C++;Métodos ágeis;Rust;
+Logica de programação;Rust;Java;C++;C;JavaScript;
+Metodos ageis;Scrum;
+HTML/CSS;JavaScript;ReactNative;React;
+U/X;JavaScript;HTML/CSS;
+Mobile;IOS;JAVA;Reactv Native;Android;
+IOS;Swift;React Native;
+Android;Java;React Native;
+Swift;IOS;React Native;
+Estrutura de dados;C++;Java;C;Rust;
+Redes;Banco de dados;
+Banco de dados;Redes;Rust;Analise de dados;Mineração de dados;SQL;NoSQL;
+SQL;Banco de dados;
+No SQL;Banco de dados;
+POO;C++;Java;Python;Rust;Logica de Programação;Scrum;
+S.O;Rust;C;C++;Java;
+Nano;JavaScript;Rust;
