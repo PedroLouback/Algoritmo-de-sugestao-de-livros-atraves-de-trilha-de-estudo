@@ -1,0 +1,3 @@
+v1=Arduino
+v2=C
+peso=4
