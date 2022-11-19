@@ -1,3 +1,4 @@
-v1=Arduino
-v2=C
-peso=4
+C;S.O
+S.O;Java
+Java;POO
+POO;Python
