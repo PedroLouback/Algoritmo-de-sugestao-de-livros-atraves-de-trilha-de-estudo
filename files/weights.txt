@@ -1,4 +1,0 @@
-C;S.O
-S.O;Java
-Java;POO
-POO;Python
