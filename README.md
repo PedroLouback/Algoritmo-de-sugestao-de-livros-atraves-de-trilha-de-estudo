@@ -9,10 +9,9 @@
     <a href="#apresentação">Apresentação</a> •
     <a href="#introdução">Introdução</a> • 
     <a href="#estrutura-e-sua-implementação">Estrutura e sua implementação</a> •
-    <a href="#resultados-e-análises">Resultados e Análises</a> •
     <a href="#conclusão">Conclusão</a> •
     <a href="#bibliotecas">Bibliotecas</a> •
-    <a href="#compilação-e-execução">Compilação e Execução</a> •
+    <a href="#execução-do-projeto">Execução do projeto</a> •
     <a href="#referências">Referências</a> •
     <a href="#autor">Autor</a>
 
@@ -193,143 +192,56 @@ Onde os mesmos são fornecidos pelo programa desenvolvido da seguinte forma apó
 <i>Figura 6: Tempos encontrados após execução para diferentes processos implementados na Árvore Binária de Pesquisa.</i>
 <br><br>
 
- 
----
- 
-## Resultados e Análises
- 
-• Após todo o código ser implementado com suas respectivas estruturas funcionando, foi possível realizar testes para obtenção do resultados de tempo de cada tipo de estrutura mencionado na proposta, onde foi possível obter os valores que estão presentes na **tabela 2**, **tabela 4**, **tabela 6**, **tabela 8**, **tabela 9** e **tabela 10**, mostrando seus tempos médios para os diferentes tamanhos de entradas e processos, possibilitando a criação dos seguintes gráficos a seguir:
-
-<p align="center">
-<img src="imgs/Graph500entries.png" width="400"/>
-<img src="imgs/Graph5000entries.png" width="405"/>
-</p>
-<i>Figura 19: Gráficos de tempo (s) em relação aos tipos diferentes de árvores ao serem utilizadas nos processos de pesquisa e remoção com 500 e 5.000 entradas.</i>
-<br><br>
-
-<p align="center">
-<img src="imgs/Graph50000entries.png" width="400"/>
-<img src="imgs/Graph500000entries.png" width="400"/>
-</p>
-<i>Figura 20: Gráficos de tempo (s) em relação aos tipos diferentes de árvores ao serem utilizadas nos processos de pesquisa e remoção com 50.000 e 500.000 entradas.</i>
-
-<p align="center">
-<img src="imgs/GraphMontagemEstrutura.png" width="400"/>
-</p>
-<i>Figura 21: Gráfico contendo a média de tempo (eixo y) dos diferentes tamanhos de entrada utilizado para a montagem da estrutura de cada árvore (eixo x) </i>
-<br><br>
-
-<p align="center">
-<img src="imgs/GraphEstruturas.png" width="400"/>
-</p>
-<i>Figura 22: Gráfico contendo a média de tempo (eixo y) dos diferentes tamanhos de entrada utilizado para a pesquisa de cada estruturas citada (eixo x) </i>
-<br><br>
- 
-Observando que foi utilizado um total de 10.000 números do tipo flutuante para realizar as pesquisas nas respectivas estruturas, considerando que:
-
-* Há um total de **3** números iguais no conjunto de 10.000 números em relação a entrada de 500 números, sendo **_0.6%_** do total de entradas mencionada;
-* Há um total de **10** números iguais no conjunto de 10.000 números em relação a entrada de 5.000 números, sendo **_0.2%_** do total de entradas mencionada;
-* Há um total de **66** números iguais no conjunto de 10.000 números em relação a entrada de 50.000 números, sendo **_1.32%%_** do total de entradas mencionada;
-* Há um total de **601** números iguais no conjunto de 10.000 números em relação a entrada de 500.000 números, sendo **_12.02%%_** do total de entradas mencionada.
- 
-•Todos os teste foram realizados em uma máquina com as seguintes especificações, sendo elementos ocasionais de incertezas nas medições de tempo:
-
-**Processador:** AMD Ryzen 5 1600;<br><br>
-**Mémoria :** 16 GB - 1600 Mhz;<br><br>
-**Sistema Operacional:** Linux - Ubuntu 20.04 LTS
-
 ---
 
 ## Conclusão
 
-__*<u>Montagem em estrutura</u>*__
-- Levando em consideração esses valores apresentados em relação aos resultados obtidos de tempo foi possível analisar através de comparações que para *montagem em estrutura* a <a href="#•-árvore-binária-de-pesquisa">Árvore Binária de Pesquisa</a> se destaca por não possuir nenhuma limitação em sua inserção como as outras árvores possuem para garantir o balanceamento, ou seja, pela `Árvore Binária de Pesquisa` não ser uma estrutura balanceada sem condições de construção, se torna uma estrutura mais eficiente na montagem. Ao contrário disso, foi possível visualizar que a <a href="#•-árvore-redblack">Árvore RedBlack</a> obteve uma  menor eficiência em sua *montagem em estrutura* por se tratar de uma árvore que, entre as árvores balanceadas envolvidas nos testes, possui um maior número de casos para serem tratadas na inserção em mémoria, tornando o processo de montagem um pouco mais lento, havendo uma diferença de **<u>0,060821334 segundos</u>** na *montagem em estrutura* entre a `Árvore Binária de Pesquisa` e `Árvore RedBlack`.
-
-__*<u>Pesquisa</u>*__
-- Utilizando de base os resultados obtidos e estruturados, foi possível notar pela comparação das médias uma diferença positiva para a <a href="#•-árvore-redblack">Árvore RedBlack</a>, sendo seguida da <a href="#•-árvore-avl">Árvore AVL</a> e por último a <a href="#•-árvore-binária-de-pesquisa">Árvore Binária de Pesquisa</a> em ranking de velocidade de execução durante as pesquisas para até 50.000 entradas, sendo explicado pela falta de balanceamento da `Árvore Binária de Pesquisa`, tornando-a mais lenta.
- Após ser realizado o último testes com um total de 500.000 entradas foi possível observar que obteve uma diferença em relação ao ranking de tempos onde a `Árvore Binária de Pesquisa` tomou a liderança de mais rápida, seguinda pela `Árvore AVL` ficando em ultimo lugar a `Árvore RedBlack` sendo a estrutura que demorou mais tempo para realizar pesquisas, podendo ocasionar essa diferença na maior quantidade de entradas por possuir cerca de **12%** de seus elementos presentes nos 10.000 números utilizados para consulta e por ser uma árvore um pouco menos estritamente equilibrida que a `Árvore AVL` como mencionado nas explicações das estruturas acima. Apesar da estrutura `Árvore AVL` apresentar resultado mediano em todos os teste é levado em consideração a massa de dados iguais contidas na árvore em relação as 10.000 entradas de consulta pois é vísivel em literatura [1] que a `Árvore AVL` se destaca na eficiência de pesquisa em relação a `Árvore RedBlack`.
-
-__*<u>Remoção</u>*__
-- Com esses mesmos dados foi concluido que no processo de remoção de elementos das estruturas estudadas, entre elas se destacou novamente a `Árvore RedBlack`, agora em sincronia com conteúdos encontrados na literatura [1] é possível concordar com os resultados forncedios pelo teste, em sequência no ranking está situado a `Árvore AVL` e por fim a `Árvore Binária de Pesquisa`. A `Árvore RedBlack` se destaca nesse processo em relação a outros tipos de árvores mencionados pois menos rotações são realizadas devido ao balancemaneto relativamente relaxado.
-
-__*<u>Comparações com vetores</u>*__
-- Utilizando os testes citados anteriormente em comparação com teste realizados é possível visualizar utilizando como referência o gráfico apresentado na **Figura 22** que estruturas do tipo *Árvore* apresentam maior eficiência em pesquisa de elementos quando comparadas com utilização da `Busca Binária` em vetores ordenados, havendo um diferença de tempo de **<u>0,00040225 segundos</u>** entre a `Árvore Binária de Pesquisa` (estrutura menos eficiente para pesquisa) e a pesquisa em vetores ordenados, onde para a implementação da `Pesquisa Binária` foi necessária a utilização da função sort() como mencionada anteriormente na explicação das estruturas, podendo visualizar os tempos de ordenação para os diferentes tamanhos de entradas no gráfico abaixo:
-
-<p align="center">
-<img src="imgs/GraphVector.png" width="450"/>
-</p>
-<i>Figura 23: Gráfico contendo a média de tempo (eixo y) dos diferentes tamanhos de entrada utilizado para a ordenação de vetores (eixo x) </i>
-<br><br>
-
-__*<u>Utilização de estruturas MAPs</u>*__
-- Ao adotar as estruturas MAPs mencionadas em <a href="#•-estruturas-maps">MAPs</a> foi realizado testes, possibilitando as seguintes conclusões.<br><br>
- **Para a utilização da função std::map()** em comparação com as demais estruturas analisadas com testes de pesquisa foi possível observar que obteve um eficiência maior tendo uma diferença **<u>0,000828749 segundos</u>** entre a `Árvore RedBlack` (segunda estrutura mais eficiente para pesquisa) e a utilização da estrutura **map()** para pesquisa, essa eficiência deve se a sua maneira de armazenar elementos internamente como `Árvore Binária de Pesquisa` balanceada, tendo uma complexidade $O(log{n})$ mesmo no pior caso. É possível observar esse ganho de eficiência em comparação com as outras estruturas no gráfico plotado abaixo:
-
-<p align="center">
-<img src="imgs/Graphmap.png" width="450"/>
-</p>
-<i>Figura 24: Gráfico contendo a média de tempo (eixo y) dos diferentes tamanhos de entrada utilizado para a ordenação de diferentes estruturas (eixo x) </i>
-<br><br>
-
- **Para a utilização da função std::unordered_map()** foi feita também testes de pesquisas, possibilitando a sua comparação com os testes de pesquisas feitos com as estruturas presentes no código, onde foi possível observar um ganho de eficiência ainda maior comparado com a ultima estrutura implementada *std::map* reduzindo o tempo de pesquisa em  **<u>0,002289 segundos</u>** (quase um terço do seu tempo) entre ela, possuindo uma diferença de  **<u>0,00311775 segundos</u>** da `Árvore RedBlack` (estrutura em árvore mais eficiente em pesquisa). Essa estrutura apresenta esse ganho de tempo no processo de pesquisa por armazenar elementos usando `Tabela Hash`, buscando uma chave específica torna sua complexidade para a operação de $O(1)$. É possível observar esse ganho de eficiência em relação as outras estruturas no gráfico plotado abaixo:
-
-<p align="center">
-<img src="imgs/Graphunordered_map.png" width="450"/>
-</p>
-<i>Figura 25: Gráfico contendo a média de tempo (eixo y) dos diferentes tamanhos de entrada utilizado para a ordenação de diferentes estruturas (eixo x) </i>
-<br><br>
+_
 
 ---
 
 ## Bibliotecas
 
-<p>Para o funcionamento do programa, é necessário incluir as seguintes bibliotecas: 
+<p>Para o funcionamento do programa, é necessário incluir as seguintes bibliotecas onde suas instalações estão situadas em <a href="#instalação-dos-módulos-necessários">Instalação dos módulos necessários</a>: 
 <ul>
-    <li><code>#include 'iostream'</code></li>
-    <li><code>#include 'stdio.h'</code></li>
-    <li><code>#include 'stdbool.h'</code></li>
-    <li><code>#include 'stdlib.h'</code></li>
-    <li><code>#include 'vector'</code></li>
-    <li><code>#include 'fstream'</code></li>
-    <li><code>#include 'random'</code></li>
-    <li><code>#include 'iomanip'</code></li>
-    <li><code>#include 'string'</code></li>
-    <li><code>#include 'sstream'</code></li>
-    <li><code>#include 'algorithm'</code></li>
-    <li><code>#include 'bits/stdc++.h'</code></li>
-    <li><code>#include 'ctime'</code></li>
-    <li><code>#include 'unordered_map'</code></li>
-    <li><code>#include 'map'</code></li>
+    <li><code>import networkx as nx</code></li>
+    <li><code>import matplotlib</code></li>
+    <li><code>import matplotlib.pyplot as plt</code></li>
+
 </ul>
+
+---
+
+## Execução do projeto
+
+Algumas observações e comentários necessários antes que seja executado o projeto: 
+
+• Este código foi desenvolvido com Python 3.10.7 em conjunto com os seguintes módulos: NetworkX (v. 2.8.8) e Matplotlib (v. 3.6.2). A instalação dos módulos mencionados se encontra em <a href="#instalação-dos-módulos-necessários">Instalação dos módulos necessários</a>
+<br>• O comando nas seções abaixo assume que seu seu executável python utilize <code>python3</code> e o instalador do pacote Python (pip), sendo seu comando <code>pip</code>
+<br>• Além disso, pressupõe que o módulo <code>venv</code> esteja instalado, pois será utilizado para construir o Ambiente Virtual Python para que executar o projeto
+
+### Instalação dos módulos necessários
+
+1. Para a instalação do sistema de gerenciamento de pacotes <b>pip</b> é necessário, em seu terminal, digitar o seguinte comando <code>sudo apt update</code> (necessário para atualizar a lista de pacotes), após isso digite o seguinte comando para instalar, <code>sudo apt install python3-pip</code> ou <code>apt-get install python3-pip</code>, lembrando de certificar se o Python 3 está instalado.<br>
+2. Para a criação e ativação da <b>Python Virtual Environmente (venv)</b> é necessário clonar ou baixar este repositório em sua máquina e em seguida dentro do diretório raiz do projeto crie um <b>Python Virtual Environmente (venv)</b> com o seguinte comando: <code>python -m venv ./venv</code>. Após isso, é necessário ativar o ambiente virtual (venv) para executar o módulo. Em máquinas Linux, geralmente para ativar basta digitar o seguinte comando: <code>source venv/bin/activate</code>. No Windows <code>.\venv\Scripts\activate</code>. Caso queira sair do ambiente virtual basta executar <code>deactivate</code><br>
+3. Após a instalação do ambiente virtual (venv) já feita, é necessário instalar as dependências necessárias para este projeto: <br>3.1. Para a instalação do método <b>NetworkX</b> basta digitar o comando <code>pip3 install networkx[default]</code> em seu terminal.<br>3.2. Para a instalação do método <b>matplotlib</b> é necessário digitar o seguinte comando em seu terminal; <code>pip3 install matplotlib</code>
+
+<br>• Após a realização desses procedimentos você estará pronto para a execução do projeto, precisando apenas digitar o seguinte comando em seu terminal, <b><code>python3 main.py</code></b>, necessário apenas estar presente no *ambiente virtual (venv)* como mencionado acima.
 
 ---
 
 ## Referências
 
-[1] CORMEM, Thomas H. et al. __Algoritmos__: Teoria e Prática. 3. ed. Cambridge, Massachussetts: MIT Press, [2009]. 1292 p. ISBN 9780262033848.
+[1] Aric A. Hagberg, Daniel A. Schult and Pieter J. Swart, “Exploring network structure, dynamics, and function using NetworkX”, in Proceedings of the 7th Python in Science Conference (SciPy2008), Gäel Varoquaux, Travis Vaught, and Jarrod Millman (Eds), (Pasadena, CA USA), pp. 11–15, Aug 2008
 
-[2] THAPLIYAL, Rohit. __Map vs unordered_map in C++__. [S. l.]: GeeksforGeeks, 7 jul. 2022. Disponível em: https://www.geeksforgeeks.org/map-vs-unordered_map-c/. Acesso em: 15 out. 2022.
+[2] J. D. Hunter, "Matplotlib: A 2D Graphics Environment", *Computing in Science & Engineering*, vol. 9, no. 3, pp. 90-95, 2007.
 
-[3]STROUSTRUP, B. Cplusplus. Disponível em: <https://cplusplus.com>. Acesso em: 17 out. 2022.
-
----
-
-## Compilação e Execução
-
-O programa feito de acordo com a proposta possui um arquivo Makefile que realiza todo o procedimento de compilação e execução. Para tanto, temos as seguintes diretrizes de execução:
-
-
-| Comando                |  Função                                                                                           |                     
-| -----------------------| ------------------------------------------------------------------------------------------------- |
-|  `make clean`          | Apaga a última compilação realizada contida na pasta build                                        |
-|  `make`                | Executa a compilação do programa utilizando o gcc, e o resultado vai para a pasta build           |
-|  `make run`            | Executa o programa da pasta build após a realização da compilação             
-
+[3] MARIANO, Diego. **Networkx**: Analisando grafos com Python e a biblioteca Networkx. [S. l.], 20 nov. 2020. Disponível em: https://diegomariano.com/networkx/. Acesso em: 19 nov. 2022.
 
 ---
 
 ## Autor
 
-Desenvolvido por [Pedro Henrique Louback Campos](https://github.com/PedroLouback) e [João Marcelo Gonçalves Lisboa](https://github.com/joaojmgl), [João Pedro Martins Espíndola](https://github.com/JoaoMEspindola?tab=repositories)
+Desenvolvido por [João Marcelo Gonçalves Lisboa](https://github.com/joaojmgl) e [Pedro Henrique Louback Campos](https://github.com/PedroLouback)
 
 Ambos alunos do 4° periodo do curso de `Engenharia de Computação` no [CEFET-MG](https://www.cefetmg.br)

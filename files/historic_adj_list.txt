@@ -1,0 +1,8 @@
+#/home/pedro/Documentos/Faculdade/Laboratório de Algoritmo e Estrutura de Dados II/Estrutura-de-representacao-e-caminhamento-em-grafos/main.py
+# GMT Sun Nov 20 01:24:57 2022
+# 
+Swift;IOS
+IOS;Mobile
+Mobile;Android
+Android;Java
+Java

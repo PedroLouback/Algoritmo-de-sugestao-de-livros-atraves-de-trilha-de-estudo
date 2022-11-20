@@ -1,8 +1,5 @@
 import networkx as nx
-import csv
-import random
 import matplotlib
-matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
 def verify_connectivity(v, Graph1, themes, Graph2, lines_number):
