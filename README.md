@@ -8,7 +8,8 @@
 <p align="center">
     <a href="#apresentação">Apresentação</a> •
     <a href="#introdução">Introdução</a> • 
-    <a href="#estrutura-e-sua-implementação">Estrutura e sua implementação</a> •
+    <a href="#estrutura-de-dados-grafos">Estrutura de dados Grafos</a> •
+    <a href="#aplicação">Aplicação</a> •
     <a href="#conclusão">Conclusão</a> •
     <a href="#bibliotecas">Bibliotecas</a> •
     <a href="#execução-do-projeto">Execução do projeto</a> •
@@ -37,15 +38,81 @@ Dada a proposta, foi pensado no desenvolvimento de um algoritmo que buscava suge
 
 ## Introdução
 
-Para introduzir o problema proposto primeiramente foi necessário a criação dos cinco diferentes arquivos sendo quatro deles contendo os diferentes tamanhos de entrada do tipo _float_ e um contendo 10.000 entradas do tipo _float_ utilizado para consultas, sendo possível encontra-los na pasta *__src/files__* para verificação. A criação dos arquivos foi necessária apenas uma vez para manter o padrão de testes, após isso foi removido as funções de criações.
+Para introduzir o projeto foi pesquisado diversos tipos de algoritmos para sugestão, onde a partir dessas pesquisas foi encotrado algoritmos de filtragem com seus diferentes tipos, métodos utilizados em algoritmos de sugestão como por exemplo utilizando regras de associação, distância euclidiana e diversos outros que possui uma fácil aplicação em Python. Diante disso foi pensado em desenvolver o próprio algoritmo de sugestão a partir da <a href="#estrutura-de-dados-grafos">Estrutura de dados Grafos</a>.
 
-Após a criação dos arquivos foi necessário a implementação dos diferentes tipos de `Estrutura de Dados Árvore` onde foram utilizadas através de repositórios feitos pelo professor [Michel Pires da Silva](http://lattes.cnpq.br/1449902596670082), sendo eles, [Árvore Binária de Pesquisa](https://github.com/mpiress/basic_tree), [Árvore AVL](https://github.com/mpiress/avl_tree) e [Árvore RedBlack](https://github.com/mpiress/RedBlack) onde na última estrutura foi necessária a implementação do método de _remoção_ onde foi encontrado o mesmo no livro do [1]Cormem em forma de pseudocódigo, sendo feita apenas algumas alterações no código principal para que fosse possível ser feita a implementação da _remoção_ sem nenhum problema. Sendo feita essas implementações foi necessário implementar a utilização de __*vectors*__ e estruturas do tipo __*MAPs*__ encontrando informações em [2] para uma implementação sem erros;
+A utilização da `Estrutura de dados Grafos` foi feita utilizando um pacote Python chamado **_NetworkX_** onde foi permitida a manipulação dos grafos utilizados no projeto, possibilitando atingir a proposta do código. A documentação da biblioteca, além de exemplos mais aprofundados, estão disponíveis em https://networkx.org/ e para o aprendizado nas manipulações desses grafos utilizando essa biblioteca foi consultado [3].
 
-## Estrutura e sua implementação
+A `Estrutura de dados Grafos` foi utilizado de duas maneiras diferentes nesse projeto. A sua primeira utilização surgiu no ínicio do código onde houve a necessidade de mostrar a possibilidade de escolha de temas para os usuários e a partir disso mostrar os temas relacionados de acordo com a sua escolha, o primeiro grafo então surgiu com a montagem de uma lista de adjacência com os temas e suas relações com outros diversos temas em um arquivo do tipo *__.csv__* e diante disso foi feita a leitura desse arquivo e então construído o grafo com os temas e suas relações. A segunda utilização foi feita já no meio do projeto onde diante das escolhas do usuário era montado um grafo com as relações dessas escolhas, com isso a cada escolha, se houvesse relações já feitas em execuções anteriores, é sugerido ao usuário opções que ja foram relacionadas com base em execuções anteriores através desse grafo que ao final de cada execução faz uma lista de adjacência em um outro arquivo para que seja feita a verificação.
 
-### • Grafo
+<i>• Todas as utilizações referente a estrutura de dados Grafos serão detalhadas mais a frente no tópico <a href="#aplicação">Aplicação</a> para que haja um melhor entendimento do projeto •</i>
 
-__*<u>O que é uma Árvore Binária de Pesquisa?</u>*__
+[PARTE PARA FALAR SOBRE A CAPTURA DOS LIVROS PARA SUGESTÃO DE FORMA SUCINTA]
+
+---
+
+## Aplicação
+
+Inicialmente o programa é composto por uma função principal, denominada como **_main()_**, função essa que compõe o código principal do projeto, sendo separada das funções criadas para haver um organização e facilidade na legibilidade do código. Diante disso, para introduzir o código é feita a leitura dos dois arquivos do tipo _csv_ onde o primeiro arquivo chamado `adjacency_list.csv` contém a lista de adjacência referente aos temas que vão ser sugeridos e suas relações, segue abaixo a imagem do primeiro grafo plotado contendo os temas que foram lidos do arquivo utilizado na execução do programa:
+
+<p align="center">
+<img src="imgs/Grafo_plotado.png" width="1000px"/>
+</p>
+<p align="center">
+<i>Figura 1: Grafo plotado através da leitura do primeiro arquivo chamado 'adjacency_list.csv' que contém a lista de adjacência de todos os temas disponíveis para o usuário com suas respectivas relações 
+</p>
+
+A segunda leitura de arquivo é realizada no arquivo chamado `historic_adj_list.csv` utilizada para recolher a lista de adjacência dos temas que foram escritos nesse arquivo a partir de execuções anteriores, contendo os temas escolhidos e as relações que foram feitas pela escolha do usuário. A escrita nesse arquivo é realizada no final do código, onde através do grafo _Graph2_ plotado durante a execução do programa contendo a relação das escolhas, escreve uma lista de adjacência atravês da função **_write_edgelist_**, disponibilizado pela biblioteca **NetworkX**, possibilitando que seja lida em uma proxima execução recolhendo os dados para a criação de um novo grafo para sugerir temas. Segue abaixo a imagem do segundo grafo que contém subgrafos contendo as escolhas e suas relações feitas durante execuções do programa onde na primeira execução foi escolhido __POO, Rust, Nano, JavaScript e ReactNative__, na segunda foi feitas as escolhas dos respectivos temas: __Redes, Banco de dados, Rust, Scrum e JavaScript__, e na última execução foi escolhido os temas __C, Arduino, IOT, Raspberry e Python__.
+
+<p align="center">
+<img src="imgs/Graph2.png" width="900px"/>
+</p>
+<p align="center">
+<i>Figura 2: Grafo 2 plotado através da leitura do segundo arquivo chamado 'historic_adj_list.csv' que contém a lista de adjacência de todos os temas escolhidos pelo usuário em 3 execuções realizadas.
+</p>
+
+Como é possível observar na imagem houve uma relação entre Rust e demais temais escolhidos na segunda execução criando uma junção entre os subgrafos plotados diferente da terceira que não ocorreu relação nenhuma nas escolhas criando um subgrafo isolado. Houve a relação na segunda execução ao usuário escolher o tema 'Rust' novamente assim então foi ofertado a ele através da seguinte mensagem:
+
+<p align="center">
+<img src="imgs/exec2Rust.png" width="900px"/>
+</p>
+<p align="center">
+<i>Figura 3: Mensagem de sugestão retornado pelo programa ao encontrar uma relação entre o tema escolhido na segunda e na primeira execução, sugerindo as relações que foram feitas em execuções anteriores.
+</p>
+
+Após ser realizada essas duas leituras é feita a verificação do segundo arquivo do tipo _csv_ para verificar se o mesmo está vazio ou se contém algo escrito nele, isso é feito para analisar se já foi realizadas outras execuções do programa ou não, fazendo com que em uma primeira execução não haja introdução a funções que estão relacionadas a sugestão de temas que foram baseados em outras execuções, evitando com que ocorra erros. Essa leitura apenas lê o arquivo e armazena a quantidade de linhas que contém no arquivo em uma variável chamada <i>lines_number</i> usada como parâmetro na função <a href="#•-função-verify_connectivity">verify_connectivity()</a>.
+
+Após dessa verificação é imprimida a lista de vértices que está contida no primeiro grafo que foi construido através da leitura do primeiro arquivo, onde é oferecido esses vértices como opção de escolha para o usuário, permitindo que seja escolhido apenas os temas que estão presentes nessa lista.<br>
+Ao ser discutido entre a dupla a quantidade de vezes em que o usuário realizaria a escolha do tema para auxiliar o seu estudo, foi definido que seria necessário 5 temas, ou seja, 5 escolhas para que houvesse uma filtragem relativamente boa para a escolha do livro, com essa decisão então foi introduzido uma estrutura de repetição `WHILE` que vai repetir enquanto seu iterador for menor que 5, ou seja, vai repetir um total de 5 vezes, oferecendo então as opções de temas para o usuário a cada repetição onde ao informar o tema através da entrada escrita pelo usuário vai ser primeiramente chamada a função <a href="#•-função-verify_correct_theme">verify_correct_theme()</a>, que explicada detalhadamente em seu tópico vai fazer a verificação se o tema informado está presente na lista ofertada de temas, caso não seja encontrado o tema será informado ao usuário através de uma mensagem que o tema não está presente na lista informada, caso seja encontrado o tema na lista será introduzido a uma nova parte do código que irá primeiramente verificar através de uma estrutura de decisão `IF` que vai verificar se o laço de repetição `WHILE` está em sua primeira execução.<br>
+Sendo verificado que está em sua primeira repetição é adicionado o tema escolhido a uma lista chamada _**themes**_ , utilizada para armazenar os temas escolhidos durante a execução do programa, e percorre os vértices do grafo verificando a cada vértice percorrido se é igual ao tema escolhido utilizando uma estrutura de verificação, caso seja verificado que é igual é introduzido a função <a href="#•-função-verify_connectivity">verify_connectivity()</a> que é explicada detalhadamente sua construção e seu retorno em seu tópico, e verificado então a partir dessa função que não há mais temas relacionados ao escolhido é encerrado o programa informado o livro encontrado através das escolhas do usuário, caso seja verificado que há mais temas relacionados é imprimido esses temas, ofertando-os para que o usuário realize uma nova escolha.<br>
+Ao verificar que o laço de repetição já foi repetido mais de uma vez é iniciado uma outra parte do código, inicialmente nessa parte é verificado se o tema informado realmente está presente naquela lista, essa verificação foi construída através da função <a href="#•-função-verify_correct_connectivity">verify_correct_connectivity()</a>, que ao ver através dos testes do programa que se o usuário informasse um tema que está presente na lista total de temas, lista que contém todos os temas, mas que não estava presente na lista dos temas relacionados escolhidos anteriormente, o programa seguia para a proxima etapa, não informando erro algum, após essa verificação se o usuário informar um tema que não está presente na lista dos temas relacionados a escolha anterior irá ifnromar uma mensagem de aviso permitindo-o que faça novamente a escolha. Após essa verificação é feita uma outra checagem para ver se o tema que está sendo escolhido não foi escolhido uma outra vez na mesma execução, bloqueando escolhas duplas de tema possibilitando que seja escolhido apenas uma vez o tema. Sendo feita todas essas verificações e não encontrado nenhuma irregularidade que impediria a execução, o tema escolhido é adionado a lista _**themes**_ e é criado uma nova ligação com o tema escolhido na etapa anterior e na repetição/etapa atual criando então dois vértices ligados por uma aresta no *Graph2* através do comando **_add_edge_**. Diante dessa nova criação de vértices é percorrido o *Graph1*, grafo contendo as relações dos temas em geral, percorrendo vértice por vértice e verificando se o tema escolhido está presente nesse grafo, ao encontrar uma igualdade é introduzido a função <a href="#•-função-verify_connectivity">verify_connectivity()</a>, já foi explicada anteriormente e detalhada em seu tópico, imprimindo então uma nova opção de temas que estão relacionados a aquele tema, caso não seja encontrado nenhum tema ou seja verificado que o programa está em sua ultima execução onde o iterador do laço de repetição é igual a 5, o programa é encerrado com uma mensagem sugerindo livros que foram encontrados com base no banco de dados dos livros que estão relacionados com os temas escolhidos 
+
+✳ Para a composição e funcionamento do código, foi necessário a construção de 5 funções, sendo essas necessárias para o funcionamento correto da aplicação dos grafos e da verificação de erros devido as escolhas do usuários, segue a explicação de cada função:
+
+### • Função verify_connectivity()
+
+Essa função foi criada após surgir a necessidade de verificar as conectivades e relações dos temas em que o usuário escolhe e assim imprimir essas relações na tela para possibilitar uma nova escolha onde recebe como parâmetro o tema que o usuário selecionou, os dois grafos construídos e a variável _lines_number_ explicada a cima a sua utilização. Através disso, é percorrido o primeiro grafo (_Graph1_) verificando se cada vértice desse grafo tem ligação, ou seja, possui aresta em comum, com o tema que foi passado como parâmetro através da função da biblioteca _NetworkX_ chamada **has_edge** e caso seja encotrado relação entre nos vértices verificados é feita a verificação também na mesma estrutura de verificação `IF` através da função <a href="#•-função-verify_theme_impression">verify_theme_impression()</a> que verifica se o vértice que possui relação com o tema escolhido já não foi selecionado em alguma outra alternativa durante a execução do programa, evitando com que imprima temas que já foram escolhidos. Caso seja verificado que ainda não foi escolhido o iterador da função será incrementado e o tema que possui relação com o escolhido será adicionado a uma lista chamada _**associates**_, o iterador da função irá servir para verificar se foi encotrado temas com relação ao escolhido, onde a função retorna esse iterador informando a função principal se foi encontrado ou não (função retorna 0). Após o tema ser adicionado na lista é feita a verificação do iterador, verificando se foi encontrado relações para assim imprimir a lista de maneira organizada dos temas que possui relação com o escolhido de maneira organizada. Diante disso surge uma nova verificação onde entra a variável _lines_number_, verificando o tamanho dessa variável para assim entrar na função  <a href="#•-função-verify_relationship">verify_relationship()</a> que verifica a relação de temas de execuções anteriores do programa, permitindo que seja buscado e sugerido temas escolhidos anteriormente, evitando que haja impressão de mensagens sem que haja execuções suficientes para a sugestão de temas.
+
+### • Função verify_theme_impression()
+
+Essa segunda função foi criada na tentantiva de verificar se o tema escolhido ou relacionado (em situações como a da função anterior), está contido na lista de temas escolhidos (_**themes**_) evitando com que haja duplicações de sugestão ou escolhas. Essa verificação é realizada através de uma estrutura de repetição `FOR` que percorre toda a lista de temas escolhidos verificando se o tema recebido como parâmetro é igual a cada elemento percorrido dessa lista, caso seja encontrado igualdade a função retorna o tipo _booleano_ True, caso não seja encontrado igualdade ela retorna False, possibilitando sua utilização em estruturas de decisão do tipo `IF`.
+
+### • Função verify_correct_theme()
+
+Essa função foi criada com o propósito de verificar se o tema passado como parâmetro está contido no grafo que também é passado como parâmetro, evitando com que seja escolhido temas que não são opções. Essa verificação é feita a partir de uma estrutura de repetição `FOR` que percorre todo o nó vértice a vértice verificando se o tema é diferente do vértice percorrido, caso seja igual a função irá retornar o tipo _booleano_ True, caso não seja encontrado igualdade ela retorna False, possibilitando sua utilização em estruturas de decisão do tipo `IF`.
+
+### • Função verify_correct_connectivity()
+
+Função criada após surgir a necessidade de verificar se o tema informado está presente nos temas sugeridos que são temas relacionados ao escolhido anteriormente, recebendo como parâmetro para a sua funcionalidade a lista _**themes**_ contendo os temas já escolhido durante a execução, o tema escolhido atualmente e o grafo que é utilizado para a verificação de relação. Essa função funciona da seguinte maneira. através de um laço de repetição `FOR` é percorrido o primeiro grafo verificando se o tema escolhido tem relação com o tema escolhido anteriormente, verificando então se o tema informado possui uma verdadeira relação, não se trata apenas de um tema aleatorio que informado, caso seja encontrado essa relação entre esses vértices a função retorna o tipo _booleano_ True, caso não seja encontrado igualdade ela retorna False, possibilitando sua utilização em estruturas de decisão do tipo `IF`.
+
+### • Função verify_relationship()
+
+Essa ultima função foi criada para que houvesse sucesso na ideia de sugerir temas de acordo com execuções anteriores, onde é responsável por toda a funcionalidade da ideia, recebe como parâmetro o tema escolhido durante a execução atual, o segundo grafo construído (_Graph2_) e a lista de temas escolhidos durante a execução atual (_**themes**_). Essa função é introduzida por um laço de repetição do tipo `FOR` que vai percorrer vértice por vértice do segundo grafo e a cada vez que é percorrido é verificado por uma estrutura de decisão `IF` se o tema escolhido possui relação com o vértice da posição percorrida atual, ou seja, verificando se o tema escolhido possui relação com temas escolhidos em execuções anteriores. É feita também a verificação na mesma estrutura de repetição, através da função <a href="#•-função-verify_theme_impression">verify_theme_impression()</a>, se o tema que possui relação já não foi escolhido anteriormente na mesma execução, evitando com que seja sugerido temas que ocasionaria uma repetição de escolha, onde iria contra a lógica do projeto. Após ser feito todas as verificações e não encontrando nenhum conflito que ocasionaria em erro de funcionamento do programa, o vértice que foi encontrado relação com tema escolhido será adicionado a uma lista chamada _**associates**_ e será incremetado o iterador da função, esse iterador possui a funcionalidade de permitir ou não (caso seja 0), a mensagem de sugestão de temas que vai ser mostrada apenas se for encontrada relações, imprimindo então a lista _**associates**_
+
+---
+
+## Estrutura de dados Grafos
+
+__*<u>O que é um Grafo</u>*__
 
 Uma Árvore Binária de Pesquisa é organizada, como o nome sugere, em uma árvore binária como mostra a _Figura 1_. Sendo uma estrutura baseada em nós, onde todos os nós da subárvore esquerda possuem um valor númerico interior ao nó raiz e todos os nós da subárvore direita possuem um valor superior ao nó raiz, sendo essa a forma padrão. Essa estrutura possue o objetivo de estruturar os dados de forma a permitir <a href="#busca-binária">Busca Binária</a>.
 Esse tipo de estrutura suporta muitas operações de conjuntos dinâmicos, incluindo _<a href="#operação-de-busca">busca</a>, mínimo, máximo, antecessor, sucessor, <a href="#operação-de-inserção">inserção</a> e <a href="#operação-de-remoção">remoção</a>_, possibilitando seu uso como um dicionário e também como uma fila de prioridades. 
@@ -57,22 +124,7 @@ Esse tipo de estrutura suporta muitas operações de conjuntos dinâmicos, inclu
 <i>Figura 1: Árvores Binárias de Pesquisa. (<b>a</b>)Uma árvore binária de pesquisa com seis nós e altura 2. (<b>b</b>)Uma árvore de busca binária menos eficiente, com altura 4, contendo as mesmas chaves de (<b>a</b>).</i>
 </p>
 
-__*<u>Custos de uma Árvore Binária de Pesquisa?</u>*__
-
-As operações básicas em um árvore binária de pesquisa demoram um tempo proporcional á altura da árvore. No caso de uma árvore binária completa com _n_ nós, tais operações são executados no tempo $O(log{}{n})$ do pior caso. Porém, se a árvore é uma cadeia linear de _n_ nós, as mesmas operações demoram o tempo $O(n)$ do pior caso. Segue uma tabela composta pela complexidade de tempo em __Notação big O__ dos algoritmos básicos que compõem a `Árvore Binária de Pesquisa`:
-
-| Algoritmo         |  Caso Médio        | Pior Caso       |         
-| ------------------| ------------------ | --------------- |
-|  `Espaço`         | $O(n)$             | $O(n)$          |
-|  `Busca`          | $O(log{n})$        | $O(n)$          |
-|  `Inserção`       | $O(log{n})$        | $O(n)$          |
-|  `Remoção`        | $O(log{n})$        | $O(n)$            
-
-<i>Tabela 1: Complexidade de uma Árvore Binária de Pesquisa em notação big O.</i>
-
-* Logo a árvore binária de busca é de pouca utilidade para ser aplicada em problemas de busca em geral, surgindo então o interesse em árvores balanceadas, cuja altura seja $O(log{}{n})$ no pior caso.
-
-__*<u>Operação de Busca</u>*__
+__*<u>Tipos de Grafos</u>*__
 
 A operação de busca por um valor específico implementada no algoritmo através de uma função recursiva como é possível visualizar no pseudocódigo abaixo que foi usado como base para implementação:
 
@@ -86,7 +138,7 @@ TreeSearch(x,k)
 ```
 <i>Explicação:</i> A busca começa examinando o nó raiz. Se a árvore está vazia, o valor procurado não pode existir na árvore. Caso contrário, se o valor é igual a raiz a busca foi bem sucedida. Se o valor é menor do que a raiz, a busca segue pela subárvore esquerda. Igualmente caso o valor é maior do que a raiz, a busca segue pela subárvore direita. Se tornando um processo recursivo até encontrar o valor requerido. Se o valor na for encontrado até a busca chegar na subárvore nula é concluido que o valor não está presente na árvore
 
-__*<u>Operação de Inserção</u>*__
+__*<u>Formas de representação</u>*__
 
 A operação de inserção é utilizado o procedimento presente na função ___insertTree()__ onde o mesmo toma um nó _z_ para o qual _z.chave = v_, _z.esquerda=NULL_ e _z.direita=NULL_, e modifica _T_ e alguns dos atributos de _z_ de modo tal que insere _z_ em uma posição adequada na árvore, sendo possível visualizar no pseudocódigo abaixo:
 
@@ -116,87 +168,12 @@ insertTree(T,z)
 caminho simples da raiz até a posição emque o item é inserido. A linha tracejada indica a ligação que é acrescentada à árvore para inserir o item.</i>
 </p>
 
-__*<u>Operação de Remoção</u>*__
-
-A exclusão de um nó na árvore binária de pesquisa é um processo mais complexo. Para excluir um nó de uma árvore binária de pesquisa, levando em consideração três casos distintos para a exclusão, sendo eles:
-
-**Caso 1 - Remoção na folha:** A exclusão na folha é a mais simples, batando apenas removê-lo da árvore como no exemplo da figura abaixo:
-<p align="left">
-<img src="imgs/remove1.jpg" width="350px"/>
-</p>
-<i>Figura 3: Remoção do valor 40 presente em uma folha.</i>
-<br><br>
-
-**Caso 2 - Remoção de nó com um filho:** Ao excluir um nó que possui um filho, o filho vai subir para a posição do pai.
-<p align="left">
-<img src="imgs/remove2.jpg" width="500px"/>
-</p>
-<i>Figura 4: Remoção do valor 90 presente em um nó com um filho.</i>
-<br><br>
-
-**Caso 3 - Remoção de nó com dois filhos:** Neste caso, há duas opções para ser operado. A primeira é a possibilidade de substituir o valor do nó a ser retirado pelo valor sucessor (o nó mais á esquerda da subárvore direita) ou pelo valor antecessor (o nó mais á direita da subárvore esquerda), sendo feita então a remoção do nó sucessor ou antecessor.
-<p align="left">
-<img src="imgs/remove3.jpg" width="450px"/>
-</p>
-<i>Figura 5: Remoção do valor 30 presente em um nó com dois filho.</i>
-
-A função __antecessor__ foi utilizada para que houvesse uma implementação sem erros onde a mesma é composta por:
-
-```c
-antecessor(T,x)
-1 if x.direita != NULL
-2 return antecessor(x.direita)
-3 x = T
-4 T = T.esquerda
-5 free x
-```
-
-```c
-RemoveTree(T,x)
-1 y = T.raiz
-2 if y == NULL
-3   return
-4 if x.chave < y.chave
-5     RemoveTree(y.esquerda, x)
-6 if x.chave > y.chave
-7     RemoveTree(y.direita, x)
-8 if y.direita == NULL{
-9     aux = y
-10     y = y.esquerda
-11     free aux
-12 }
-13 if y.esquerda == NULL
-14     antecessor(y.esquerda, y)
-15 aux = y
-16 y = y.direita
-17 free aux
-```
-
-* *T* representa uma estrutura de árvore e *x* um nó
-
-__*<u>Testes utilizando Árvore Binária de Pesquisa</u>*__
-
-Após ser feita a implementação de todos os algoritmos básicos presentes em uma `Árvore Binária de Pesquisa` foi possível realizar os testes propostos em  <a href="#apresentação">Apresentação</a> obtendo então os seguintes resultados informados na tabela a seguir:
-
-<p align="left">
-<img src="imgs/tabelaABP.png" width="1170" height="125"/>
-</p>
-<i>Tabela 2: Tempos médios de comparações para pesquisa, remoção e motagem da estrutura de Árvore Binária de Pesquisa.</i>
-<br><br>
-
-Onde os mesmos são fornecidos pelo programa desenvolvido da seguinte forma após a sua compilação:
-
-<p align="left">
-<img src="imgs/saidaABP.png" width="300"/>
-</p>
-<i>Figura 6: Tempos encontrados após execução para diferentes processos implementados na Árvore Binária de Pesquisa.</i>
-<br><br>
 
 ---
 
 ## Conclusão
 
-_
+
 
 ---
 
@@ -223,10 +200,15 @@ Algumas observações e comentários necessários antes que seja executado o pro
 ### Instalação dos módulos necessários
 
 1. Para a instalação do sistema de gerenciamento de pacotes <b>pip</b> é necessário, em seu terminal, digitar o seguinte comando <code>sudo apt update</code> (necessário para atualizar a lista de pacotes), após isso digite o seguinte comando para instalar, <code>sudo apt install python3-pip</code> ou <code>apt-get install python3-pip</code>, lembrando de certificar se o Python 3 está instalado.<br>
-2. Para a criação e ativação da <b>Python Virtual Environmente (venv)</b> é necessário clonar ou baixar este repositório em sua máquina e em seguida dentro do diretório raiz do projeto crie um <b>Python Virtual Environmente (venv)</b> com o seguinte comando: <code>python -m venv ./venv</code>. Após isso, é necessário ativar o ambiente virtual (venv) para executar o módulo. Em máquinas Linux, geralmente para ativar basta digitar o seguinte comando: <code>source venv/bin/activate</code>. No Windows <code>.\venv\Scripts\activate</code>. Caso queira sair do ambiente virtual basta executar <code>deactivate</code><br>
-3. Após a instalação do ambiente virtual (venv) já feita, é necessário instalar as dependências necessárias para este projeto: <br>3.1. Para a instalação do método <b>NetworkX</b> basta digitar o comando <code>pip3 install networkx[default]</code> em seu terminal.<br>3.2. Para a instalação do método <b>matplotlib</b> é necessário digitar o seguinte comando em seu terminal; <code>pip3 install matplotlib</code>
+2. Para a criação e ativação da <b>Python Virtual Environmente (venv)</b> é necessário clonar ou baixar este repositório em sua máquina e em seguida dentro do diretório raiz do projeto crie um <b>Python Virtual Environmente (venv)</b> com o seguinte comando: <code>python3 -m venv ./venv</code>. Após isso, é necessário ativar o ambiente virtual (venv) para executar o módulo. Em máquinas Linux, geralmente para ativar basta digitar o seguinte comando: <code>source venv/bin/activate</code>. No Windows <code>.\venv\Scripts\activate</code>. Caso queira sair do ambiente virtual basta executar <code>deactivate</code><br>
+3. Após a instalação do ambiente virtual (venv) já feita, é necessário instalar as dependências necessárias para este projeto: <br>3.1. Para a instalação do método <b>NetworkX</b> basta digitar o comando <code>pip3 install networkx[default]</code> em seu terminal.<br>3.2. Para a instalação do método <b>matplotlib</b> é necessário digitar o seguinte comando em seu terminal: <code>pip3 install matplotlib</code>
 
-<br>• Após a realização desses procedimentos você estará pronto para a execução do projeto, precisando apenas digitar o seguinte comando em seu terminal, <b><code>python3 main.py</code></b>, necessário apenas estar presente no *ambiente virtual (venv)* como mencionado acima.
+### Executando
+• Após a realização desses procedimentos você estará pronto para a execução do projeto, basta digitar o comando abaixo em seu terminal, sendo necessário apenas estar presente no <i>ambiente virtual (venv)</i> como mencionado acima.
+
+```
+python3 main.py
+```
 
 ---
 
