@@ -114,29 +114,36 @@ Essa ultima função foi criada para que houvesse sucesso na ideia de sugerir te
 
 __*<u>O que é um Grafo</u>*__
 
-Uma Árvore Binária de Pesquisa é organizada, como o nome sugere, em uma árvore binária como mostra a _Figura 1_. Sendo uma estrutura baseada em nós, onde todos os nós da subárvore esquerda possuem um valor númerico interior ao nó raiz e todos os nós da subárvore direita possuem um valor superior ao nó raiz, sendo essa a forma padrão. Essa estrutura possue o objetivo de estruturar os dados de forma a permitir <a href="#busca-binária">Busca Binária</a>.
-Esse tipo de estrutura suporta muitas operações de conjuntos dinâmicos, incluindo _<a href="#operação-de-busca">busca</a>, mínimo, máximo, antecessor, sucessor, <a href="#operação-de-inserção">inserção</a> e <a href="#operação-de-remoção">remoção</a>_, possibilitando seu uso como um dicionário e também como uma fila de prioridades. 
+Os grafos são estruturas discretas que consistem em vértices e arestas que ligam estes vértices. Problemas sobre grafos estão sempre presentes em ciência da computaçã, e algoritmos para trabalhar com eles são fundamentais para a área.<br>
+Consiste em um ramo da matemática que estuda as relações entre os objetos de um determinado conjunto. Para tal são utilizadas estruturas chamadas de **grafos**, <i>**G(V,E)**</i>, onde _V_ é um conjunto não vazio de objetos denominados vértices (ou nós) e _E_ (do inglês edges - arestas) é um subconjunto de pares não ordenados de V.
+
+Dependendo da aplicação, arestas podem ou não ter direção, pode ser permitido ou não arestas ligarem um vértice a ele próprio e vértices e/ou arestas podem ter um peso (númerico) associado. Se as arestas têm um sentido associado temos um *grafo orientado*. Um grafo com um único vértice e sem arestas é conhecido como *grafo trivial*
+
+__*<u>Representação gráfica</u>*__
+
+Os grafos são geralmente representados graficamente da seguinte maneira: é desenhado um círculo para cada vértice, e para cada aresta é desenhado um arco conectando suas extremidades. Se o grafo for direcinado,seu sentido é indicado na aresta por uma seta
 
 <p align="center">
-<img src="imgs/abp.png" width="600px"/>
+<img src="imgs/representacao_grafo.png" width="250px"/>
 </p>
 <p align="center">
-<i>Figura 1: Árvores Binárias de Pesquisa. (<b>a</b>)Uma árvore binária de pesquisa com seis nós e altura 2. (<b>b</b>)Uma árvore de busca binária menos eficiente, com altura 4, contendo as mesmas chaves de (<b>a</b>).</i>
-</p>
+<i>Figura 4: Representação de um grafo com seis vértices e 7 arestas encotrado em [3].</i>
+
+O grafo exibido na _Figura 4_ é um grafo simples com o conjunto de vértices V={1, 2, 3, 4, 5, 6} e um conjunto de arestas E={{1,2}, {1,5}, {2,3}, {2,5}, {3,4}, {4,5}, {4,5}, {4,6}}
+
+• Lembrando que essa representação gráfica não deve ser confudida com o grafo em si. Diferentes representações gráficas podem corresponder ao mesmo grafo.
 
 __*<u>Tipos de Grafos</u>*__
 
-A operação de busca por um valor específico implementada no algoritmo através de uma função recursiva como é possível visualizar no pseudocódigo abaixo que foi usado como base para implementação:
+**• Grafo simples:** é um grafo não direcionado, sem laços e existe no máximo uma aresta entre quaisquer dois vértices (Sem arestas paralelas). Para um grafo simples, o número de vizinhos de um vértice é igual ao seu grau.
 
-```c
-TreeSearch(x,k)
-1 if x == NULL ou k == x.chave
-2   return x
-3 if k < x.chave
-4   return TreeSearch(x.esquerda, k)
-5 else return TreeSearch(x.direita, k)
-```
-<i>Explicação:</i> A busca começa examinando o nó raiz. Se a árvore está vazia, o valor procurado não pode existir na árvore. Caso contrário, se o valor é igual a raiz a busca foi bem sucedida. Se o valor é menor do que a raiz, a busca segue pela subárvore esquerda. Igualmente caso o valor é maior do que a raiz, a busca segue pela subárvore direita. Se tornando um processo recursivo até encontrar o valor requerido. Se o valor na for encontrado até a busca chegar na subárvore nula é concluido que o valor não está presente na árvore
+**• Grafo completo:** é o grafo simples em que, para cada vérice do grafo, existe uma aresta conectando este vértice a cada um dos demais. Ou seja, todos os vértices do grafo possuem mesmo grau.
+
+**• Grafo nulo:** é o grafo cujo conjunto de vértices é vazio
+
+**• Grafo vazio:** é o grafo cujo conjunto de arestas é vazio
+
+**• Subgrafo:** de um grafo G é um grafo cujo conjunto dos vértices é um subconjunto do conjunto de vértices G, cujo conjunto de arestas é um subconjunto do conjunto de arestas de G, e cuja função w é uma restrição da função de G
 
 __*<u>Formas de representação</u>*__
 
