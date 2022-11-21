@@ -1,5 +1,0 @@
-Front-end  Internet  HTML  CSS  Javascript  Frameworks
-Back-end  OS  Rust  Go  Dados  Grafos
-Mobile  Kotlin  Controle de Sistemas  Segurança  Teste  Dados
-Dados  Estrutura de dados  Segurança da Informação  Big Data  Machine Learning  Banco de Dados
-Python  Funções  Ordenação  POO  GitHub  Back-end
