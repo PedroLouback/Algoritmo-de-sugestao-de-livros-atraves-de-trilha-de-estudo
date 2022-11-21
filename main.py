@@ -32,10 +32,13 @@ def main():
                     for v in Graph1.nodes():
                         if v == theme:
                             if i < 4:
-                                if verify_connectivity(theme, Graph1, themes, Graph2, lines_number) == 0:
+                                store_value_function = verify_connectivity(v, Graph1, themes)
+                                if store_value_function == 0:
                                     print('\nCom base nas suas escolhas foram encontrados os seguintes livros: ')
                                     print(', '.join(themes).replace("'", ""))
                                     i = 5
+                                if store_value_function > 1 and len(lines_number) > 0:
+                                    store_value_function2 = verify_relationship(theme, Graph2, themes)
                             else:
                                 print('\nCom base nas suas escolhas foram encontrados os seguintes livros: ')
                                 print(', '.join(themes).replace("'", ""))
@@ -44,17 +47,26 @@ def main():
                 themes.append(theme)
                 for v in Graph1.nodes():
                     if v == theme:
-                        if verify_connectivity(v, Graph1, themes, Graph2, lines_number) == 0:
+                        store_value_function = verify_connectivity(v, Graph1, themes)
+                        if store_value_function == 0:
                             print('\nCom base nas suas escolhas foram encontrados os seguintes livros: ')
                             print(', '.join(themes).replace("'", ""))
                             i = 5
+                        if store_value_function > 1 and len(lines_number) > 0:
+                            store_value_function2 = verify_relationship(theme, Graph2, themes)
                 i = i + 1
+    
+    if store_value_function2 > 0:
+        print('\nDe acordo com as escolhas do usuário e execuções anteriores foi observado que usuário realizou um estudo verticalizado, seguindo sugestões realizadas pelo programa!')
+    elif store_value_function2 == 0:
+        print('\nDe acordo com as escolhas do usuário e execuções anteriores foi observado que usuário não realizou um estudo verticalizado!')
+    
 
     nx.write_edgelist(Graph2, 'files/historic_adj_list.csv', delimiter=";", data=False, encoding='utf-8')
 
     arq.close()
 
-def verify_connectivity(theme, Graph1, themes, Graph2, lines_number):
+def verify_connectivity(theme, Graph1, themes):
     i = 0
     associates = []
     for u in Graph1.nodes():
@@ -65,8 +77,6 @@ def verify_connectivity(theme, Graph1, themes, Graph2, lines_number):
         print(f'\nOpções associadas a {theme}:')
         for j in range(len(associates)):
             print(associates[j])
-    if len(lines_number) > 0 and i > 1:
-        verify_relationship(theme, Graph2, themes)
     return i
 
 def verify_theme_impression(u, themes):
@@ -94,6 +104,7 @@ def verify_correct_connectivity(themes, theme, G):
     return False
     
 def verify_relationship(theme, Graph2, themes):
+    count_associates = 0
     i = 0
     associates = []
     for u in Graph2.nodes():
@@ -101,9 +112,11 @@ def verify_relationship(theme, Graph2, themes):
             i = i + 1
             associates.append(u)
     if i > 0:
+        count_associates = count_associates + 2
         print(f'\nSUGESTÃO: De acordo com escolhas de usuários anteriores, o tema {theme} foi selecionado em conjunto com o(s) seguinte(s) tema(s): ')
         for j in range(len(associates)):
             print(associates[j])
+    return count_associates
 
 if __name__ == "__main__":
     main()
