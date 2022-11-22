@@ -20,7 +20,6 @@ def main():
         theme = input('\nEscolha, entre os temas acima, o que deseja estudar: ')
         if len(associates) > 0:
             check_associates.append(verify_vertical_study(theme, associates))
-            print(check_associates)
         associates.clear()
         if verify_correct_theme(theme, Graph1) == False:
             print(f'\nO tema "{theme}" não está presente na lista acima!')
@@ -40,12 +39,22 @@ def main():
                             if i < 4:
                                 store_value_function = verify_connectivity(v, Graph1, themes)
                                 if store_value_function == 0:
+                                    if len(check_associates) > 0:
+                                        if verify_impression_vertical_study(check_associates) == True:
+                                            print('\nDe acordo com as escolhas do usuário e execuções anteriores foi observado que usuário realizou um estudo verticalizado, seguindo sugestões realizadas pelo programa!')
+                                        else:
+                                            print('\nDe acordo com as escolhas do usuário e execuções anteriores foi observado que usuário realizou um estudo horizontal, não seguindo as sugestões realizadas pelo programa!')
                                     print('\nCom base nas suas escolhas foram encontrados os seguintes livros: ')
                                     print(', '.join(themes).replace("'", ""))
                                     i = 5
                                 if store_value_function > 1 and len(lines_number) > 0:
                                     associates = verify_relationship(theme, Graph2, themes)
                             else:
+                                if len(check_associates) > 0:
+                                    if verify_impression_vertical_study(check_associates) == True:
+                                        print('\nDe acordo com as escolhas do usuário e execuções anteriores foi observado que usuário realizou um estudo verticalizado, seguindo sugestões realizadas pelo programa!')
+                                    else:
+                                        print('\nDe acordo com as escolhas do usuário e execuções anteriores foi observado que usuário realizou um estudo horizontal, não seguindo as sugestões realizadas pelo programa!')
                                 print('\nCom base nas suas escolhas foram encontrados os seguintes livros: ')
                                 print(', '.join(themes).replace("'", ""))
                     i = i + 1
@@ -55,18 +64,17 @@ def main():
                     if v == theme:
                         store_value_function = verify_connectivity(v, Graph1, themes)
                         if store_value_function == 0:
+                            if len(check_associates) > 0:
+                                if verify_impression_vertical_study(check_associates) == True:
+                                    print('\nDe acordo com as escolhas do usuário e execuções anteriores foi observado que usuário realizou um estudo verticalizado, seguindo sugestões realizadas pelo programa!')
+                                else:
+                                    print('\nDe acordo com as escolhas do usuário e execuções anteriores foi observado que usuário realizou um estudo horizontal, não seguindo as sugestões realizadas pelo programa!')
                             print('\nCom base nas suas escolhas foram encontrados os seguintes livros: ')
                             print(', '.join(themes).replace("'", ""))
                             i = 5
                         if store_value_function > 1 and len(lines_number) > 0:
                             associates = verify_relationship(theme, Graph2, themes)
                 i = i + 1
-    if len(check_associates) > 0:
-        if verify_impression_vertical_study(check_associates) == True:
-            print('\nDe acordo com as escolhas do usuário e execuções anteriores foi observado que usuário realizou um estudo verticalizado, seguindo sugestões realizadas pelo programa!')
-        else:
-            print('\nDe acordo com as escolhas do usuário e execuções anteriores foi observado que usuário realizou um estudo horizontal, não seguindo as sugestões realizadas pelo programa!')
-         
 
     nx.write_edgelist(Graph2, 'files/historic_adj_list.csv', delimiter=";", data=False, encoding='utf-8')
 
