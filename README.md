@@ -180,10 +180,53 @@ Essa função foi feita pela necessidade de verificar se o usuário seguiu ou n�
 
 Função construída através da necessidade de verificar se vai ser realizada a impressão informado ao usuário o seu tipo de estudo. A função vai percorrer a lista *check_associates*, construída pela função <a href="#•-função-verify_vertical_study">verify_vertical_study()</a>, ao percorrer essa lista vai ser verificado a cada posição se corresponde ao valor 1, pois caso encontre esse valor presente na lista é verificado que não foi seguida todas as sugestões, tornando um estudo horizontal, com isso a função retornará o tipo booleano **False** e vai ser informando na função principal que o usuário optou por esse tipo de estudo, caso seja verificado que não foi encontrado nenhum valor inteiro 1, corresponde que o usuário seguiu todas as sugestões ofertadas pelo código e com isso é permitido informar ao usuário que ele seguiu o estudo verticalizado.
 
+### • Função Verify_book()(Filtragem do dataframe)
+
+Esta função tem o objetivo de filtrar um data frame pre definido e classificar os melhores livros para cada tema. Inicialmente haviam 22 arquivos  'csv' que contabilizavam mais de 4 Milhões de livros, assim foi feito uma mineração nos dados e o numero de livros foi reduzido a 3295 livros.
+Todos o arquivos contavam com as seguintes configuraçãos de informações:
+`Name`: Continha o nome do livro.
+`RatingDist5`: Quantidade avalições de 5 estrelas que livro continha.
+`RatingDist4`: Quantidade avalições de 4 estrelas que livro continha.
+`RatingDist3`: Quantidade avalições de 3 estrelas que livro continha.
+`RatingDist2`: Quantidade avalições de 2 estrelas que livro continha.
+`RatingDist1`: Quantidade avalições de 1 estrelas que livro continha.  
+`RatingDistTotal`: Quantidade total de avalição.
+
+EX:
+```csv
+Name,RatingDist5,RatingDist4,RatingDist3,RatingDist2,RatingDist1,RatingDistTotal,
+"Artificial Intelligence: An Applications-Oriented Approach",5:0,4:0,3:0,2:0,1:0,total:0
+```
+A primeira filtragem do data frame selecionou apenas os livros que contiam palavras chaves. Como python ou JavaScrip.
+
+A seguir foi feito a media de todas a notas presentes no dataframe, deixando-o da seguinte forma:
+`Name`: Contem o nome do livro.
+`FinalStar`: Media de todas as avalçôes.
+`RatingDistTotal`: Quantidade total de avalição.
+
+```csv
+Name,FinalStar,RatingDistTotal,
+"Sams Teach Yourself JavaScript in 24 Hours",3.3,58,
+```
+Assim função final presente no algoritmo tem apenas o objetivo de buscar e classificar os melhores livros entrer todos o livros encontrados.
+- Primeiramente o a função verifica qual o tema selecionada e atribui algumas palavras chaves ao tema, para evitar que livros indesejados com o mesmo nome sejam selecionados. Ex:
+
+```CSV
+"Monty Python, the Case Against Irreverence, Scurrility, Profanity, Vilification, and Licentious Abuse",4.0,45,
+```
+- Em seguida o programa iniciava o calculo de classificação dos livros. Que funcionava da seguinte forma:
+
+**(MediaxMedia)xTotal_de_avalições**
+- Desta maneira não necessariamente um livro com a maior nota seria o mais bem classificado pois dependia diretamente da quantidade de avalições.
+
+> Durante a execução do codigo pode ser que alguns do temas não apresentem livros, isto se deve pelo motivo de não conter livros no dataframe sobre tal tema.
+
 ---
  
 ## Conclusão
  
+  O trabalho teve exito em apresentar a estrutura de grafos e nos ensinar a trabalhar com ela. Pudemos obsservar o poder e as limitações encontradas em tal estrutura, ao fim deste trabalho estamos aptos a trabalhar e aplicar a estrutura de grafos em nossos algoritmos futuros 
+  Ao final do processo pudemos analisar que o uso de grafos no algoritmo cumpriu com os resultados esperados, porem, ainda podia ser feito muito mais, com alguns apefeiçoamentos poderiamos sugerir opções de estudos mais precisas de acordo com os livros escolhidos e com a inclinação de interesse de cada usuario por determidado tema.  
  
  
 ---
@@ -195,6 +238,11 @@ Função construída através da necessidade de verificar se vai ser realizada a
    <li><code>import networkx as nx</code></li>
    <li><code>import matplotlib</code></li>
    <li><code>import matplotlib.pyplot as plt</code></li>
+   <li><code>import pandas as pd</code></li>
+   <li><code>import nltk</code></li>
+   <li><code>import csv</code></li>
+   <li><code>from wordcloud import wordcloud</code></li>
+   <li><code>import string</code></li>
  
 </ul>
  
